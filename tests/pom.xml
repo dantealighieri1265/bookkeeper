@@ -11,7 +11,8 @@
     <artifactId>tests</artifactId>
 
     <properties>
-        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../${aggregate.report.dir}</sonar.coverage.jacoco.xmlReportPaths>
+        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../tests/target/site/jacoco-aggregate/jacoco.xml
+        </sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
     <name>Apache BookKeeper :: Tests</name>

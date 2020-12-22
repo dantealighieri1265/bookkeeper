@@ -106,6 +106,7 @@
     </developer>
   </developers>
   <properties>
+    <aggregate.report.dir>tests/target/site/jacoco-aggregate/jacoco.xml</aggregate.report.dir>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.targer>11</maven.compiler.targer>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -178,7 +179,7 @@
     <dockerfile-maven-plugin.version>1.4.13</dockerfile-maven-plugin.version>
     <exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
     <license-maven-plugin.version>1.6</license-maven-plugin.version>
-    <jacoco-maven-plugin.version>0.8.0</jacoco-maven-plugin.version>
+    <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
     <maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
     <maven-assembly-plugin.version>3.1.0</maven-assembly-plugin.version>
     <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
@@ -203,7 +204,6 @@
     <sonar.links.ci>https://travis-ci.org/dantealighieri1265/bookkeeper</sonar.links.ci>
     <sonar.links.scm>https://github.com/dantealighieri1265/bookkeeper</sonar.links.scm>
     <sonar.links.issue>https://github.com/dantealighieri1265/bookkeeper/issues</sonar.links.issue>
-    <aggregate.report.dir>tests/target/site/jacoco-aggregate/jacoco.xml</aggregate.report.dir>
 
 
   </properties>
@@ -803,15 +803,15 @@
     </extensions>
     <pluginManagement>
       <plugins>
+      <!--<plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>${jacoco-maven-plugin.version}</version>
+        </plugin>-->
         <plugin>
           <groupId>org.sonarsource.scanner.maven</groupId>
           <artifactId>sonar-maven-plugin</artifactId>
           <version>3.6.0.1398</version>
-        </plugin>
-        <plugin>
-          <groupId>org.jacoco</groupId>
-          <artifactId>jacoco-maven-plugin</artifactId>
-          <version>0.8.4</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -847,6 +847,25 @@
       </plugins>
     </pluginManagement>
     <plugins>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>${jacoco-maven-plugin.version}</version>
+        <executions>
+          <execution>
+            <id>prepare-agent</id>
+            <goals>
+             <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>report</id>
+            <goals>
+             <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
+        </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
@@ -1020,7 +1039,7 @@
     </plugins>
   </build>
   <profiles>
-    <profile>
+    <!--<profile>
       <id>coverage</id>
       <activation>
         <activeByDefault>true</activeByDefault>
@@ -1041,7 +1060,7 @@
           </plugin>
         </plugins>
       </build>
-    </profile>
+    </profile>-->
     <profile>
       <id>jdk11-no-spotbugs</id>
       <activation>
